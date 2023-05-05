@@ -45,13 +45,18 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-            //修改商品數據
-            productService.updateProduct(productId, productRequest);
+        //修改商品數據
+        productService.updateProduct(productId, productRequest);
 
-            Product updatedProduct = productService.getProductById(productId);
+        Product updatedProduct = productService.getProductById(productId);
 
-            return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
 
+    }
+    @DeleteMapping("/products/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId){
+        productService.deleteProductById(productId);
+       return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
