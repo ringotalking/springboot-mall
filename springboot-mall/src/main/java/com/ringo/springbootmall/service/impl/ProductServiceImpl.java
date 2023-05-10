@@ -1,10 +1,10 @@
 package com.ringo.springbootmall.service.impl;
 
-import com.ringo.springbootmall.constant.ProductCategory;
 import com.ringo.springbootmall.dao.ProductDao;
-import com.ringo.springbootmall.service.ProductService;
+import com.ringo.springbootmall.dto.ProductQueryParams;
 import com.ringo.springbootmall.dto.ProductRequest;
 import com.ringo.springbootmall.model.Product;
+import com.ringo.springbootmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category, String search) {
-        return productDao.getProducts(category, search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
