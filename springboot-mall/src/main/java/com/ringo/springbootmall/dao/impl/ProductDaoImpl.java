@@ -64,11 +64,12 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product getProductById(Integer productId) {
         //待解，不能用列舉，莫名其妙。
-        /*String sql = "SELECT product_id, product_name, category, image_url, price, stock, description," +
-                "created_date, last_modified_date" +
-                "FROM product WHERE product_id = :productId";*/
-        String sql = "SELECT *" +
+        //已解(5/20)，未在參數最後留空白，造成sql指令相黏出錯。
+        String sql = "SELECT product_id, product_name, category, image_url, price, stock, description," +
+                "created_date, last_modified_date " +
                 "FROM product WHERE product_id = :productId";
+        /*String sql = "SELECT *" +
+                "FROM product WHERE product_id = :productId";*/
 
         Map<String, Object> map = new HashMap<>();
         map.put("productId", productId);
@@ -86,7 +87,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Integer createProduct(ProductRequest productRequest) {
         String sql = "INSERT INTO product(product_name, category, image_url, price," +
-                " stock, description, created_date, last_modified_date)" +
+                " stock, description, created_date, last_modified_date) " +
                 "VALUES(:productName, :category, :imageUrl, :price, :stock, " +
                 ":description, :createdDate, :lastModifiedDate)";
 
