@@ -1,6 +1,7 @@
 package com.ringo.springbootmall.service.impl;
 
 import com.ringo.springbootmall.dao.UserDao;
+import com.ringo.springbootmall.dto.UserLoginRequest;
 import com.ringo.springbootmall.dto.UserRegisterRequest;
 import com.ringo.springbootmall.model.User;
 import com.ringo.springbootmall.service.UserService;
@@ -18,6 +19,24 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if(user == null){
+            log.warn("該email {} 尚未註冊", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if(user.getPassword().equals(userLoginRequest.getPassword())){
+            return user;
+        }else{
+            log.warn("email的 {} 密碼不正確", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 
     @Override
     public Integer register(UserRegisterRequest userRegisterRequest) {
