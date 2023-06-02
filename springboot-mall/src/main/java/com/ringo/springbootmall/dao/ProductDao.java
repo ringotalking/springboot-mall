@@ -7,6 +7,7 @@ import com.ringo.springbootmall.model.Product;
 import java.util.List;
 
 public interface ProductDao {
+    void updateStock(Integer productId, Integer stock);
     Integer countProduct(ProductQueryParams productQueryParams);
     List<Product> getProducts(ProductQueryParams productQueryParams);
     Product getProductById(Integer productId);
