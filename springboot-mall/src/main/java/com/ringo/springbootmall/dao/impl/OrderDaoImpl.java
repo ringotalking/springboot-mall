@@ -135,7 +135,7 @@ public class OrderDaoImpl implements OrderDao {
 
         // 使用 batchUpdate 一次性加入數據，效率更高。
         String sql = "INSERT INTO order_item(order_id, product_id, quantity, amount) " +
-                "Value (:orderId, :productId, :quantity, :amount)";
+                "VALUES (:orderId, :productId, :quantity, :amount)";
 
         MapSqlParameterSource[] parameterSources = new MapSqlParameterSource[orderItemList.size()];
 
